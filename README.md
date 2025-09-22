@@ -1,5 +1,5 @@
 # melody_finder
-En la aplicación se busca el poder 
+Una aplicación para poder ordenar, administrar los compnnentes musicales que se encuentran en una plataforma de streaming de música como: nombre de artista, reproducciones, album, canciones, entre otros.
 ## SICT0302B: Toma decisiones 
 ### Selecciona y usa una estructura lineal adecuada al problema.
 Para poder separar nuestras columnas del data set en formato .csv, se utilizan vectores separados. También se implementa el uso de una matriz para poder hacer el ordenamiento que se pide.
