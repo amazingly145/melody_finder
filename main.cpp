@@ -48,7 +48,9 @@ int main(){
         artistas.push_back(artists);
         artistas_para_ordenar.push_back(artists);
         album.push_back(album_name);
+        album_para_ordenar.push_back(album_name);
         canciones.push_back(track_name);
+        canciones_para_ordenar.push_back(track_name);
     }
     cout << "-----Bienvenido al sistema de musica-----" << endl;
     while(consultante == true){
@@ -58,29 +60,32 @@ int main(){
         if(usuario == 1){
             cout << "------Ordenar artistas por orden alfabetico-----" << endl;
             for(int i = 0; i < artistas.size(); i++){
-                artistas_para_ordenar[i] = artistas[i] + " cancion: " + canciones[i] + " album: " + album[i];
+                artistas_para_ordenar[i] = artistas[i] + "\ncancion: " + canciones[i] + "\nalbum: " + album[i];
             }
             ordered_music.quickSort(artistas_para_ordenar, 0, artistas_para_ordenar.size() - 1);
             for (int i = 0; i < artistas_para_ordenar.size(); i++){
-                cout << "Artista: " << artistas_para_ordenar[i] <<endl;}
+                cout << "Artista: " << artistas_para_ordenar[i] <<endl;
+                cout << "----------------------------------" << endl;}
             }
         if(usuario == 2){
-            for(int i = 0; i < canciones.size(); i++){
-                canciones_para_ordenar[i] = canciones[i] + " artista: " + artistas[i] + " album: " + album[i];
-            }
             cout << "------Ordenar canciones por orden alfabetico-----" << endl;
-            ordered_music.quickSort(canciones_para_ordenar, 0, canciones.size() - 1);
+            for(int i = 0; i < canciones.size(); i++){
+                canciones_para_ordenar[i] = canciones[i] + "\nartista: " + artistas[i] + "\nalbum: " + album[i];
+            }
+            ordered_music.quickSort(canciones_para_ordenar, 0, canciones_para_ordenar.size() - 1);
             for (int i = 0; i < canciones_para_ordenar.size(); i++){
-                cout << "Cancion: " << canciones_para_ordenar[i] <<endl;}
+                cout << "Cancion: " << canciones_para_ordenar[i] <<endl;
+                cout << "----------------------------------" << endl;}
             }
         if(usuario == 3){
             cout << "------Ordenar album por orden alfabetico-----" << endl;
             for(int i = 0; i < artistas.size(); i++){
-                album_para_ordenar[i] = album[i] + " cancion: " + canciones[i] + " artista: " + artistas[i];
+                album_para_ordenar[i] = album[i] + "\ncancion: " + canciones[i] + "\nartista: " + artistas[i];
             }
             ordered_music.quickSort(album_para_ordenar, 0, album_para_ordenar.size() - 1);
             for (int i = 0; i < album_para_ordenar.size(); i++){
                 cout << "Album: " << album_para_ordenar[i] <<endl;
+                cout << "----------------------------------" << endl;
             }
         }
         if(usuario == 4){
