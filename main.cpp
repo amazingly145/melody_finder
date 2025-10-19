@@ -8,28 +8,36 @@ using namespace std;
 #include <fstream>
 
 void menu(){
-    cout << "-----Funciones de ordenamiento------" << endl;
-    cout << "1. Ordenar alafabeticamente los artistas" << endl;
-    cout << "2. Ordenar alfabeticamente las canciones" << endl;
-    cout << "3. Ordenar alfabeticamente los albumes" << endl;
-    cout << "4. Salida" << endl;
+    cout << "-----Menu------" << endl;
+    //Funciones con double list
+    cout << "1. Agregar nuevos artistas" << endl;
+    cout << "2. Buscar artista" << endl; //Poner cuantas veces se repite
+    //Funciones de ordenamiento
+    cout << "3. Ordenar alafabeticamente los artistas" << endl;
+    cout << "4. Ordenar alfabeticamente las canciones" << endl;
+    cout << "5. Ordenar alfabeticamente los albumes" << endl;
+    cout << "6. Salida" << endl;
 }
 
 int main(){   
     //Variables
     int usuario;
     bool consultante = true;
-    Music<string> ordered_music;
-    vector<string> artistas; //vector
-    vector<string> artistas_para_ordenar; //vector
-    vector<string> canciones;
-    vector<string> canciones_para_ordenar;
-    vector<string> album;
-    vector<string> album_para_ordenar;
+    string artistas;
+    string cancion;
+    string album;
+    //Creamos la matriz de musica con todos los datos
+    vector<vector<string>> matriz_musica;
     //dataset upload
     ifstream music_dataset(DATA_SET);
     string linea;
+    string valores;
     char delimitador = ',';
+    //QUICK SORT
+    Sort<string>ordered_music;
+    //DOUBLE LINKED LIST
+    DList<string> double_list_music;
+    vector<string> vector_temporal;
     //we read the first line
     getline(music_dataset, linea);
     //We read all the lines
@@ -44,13 +52,10 @@ int main(){
         getline(stream, artists, delimitador);
         getline(stream, album_name, delimitador);
         getline(stream, track_name, delimitador);
-        //We save artists in the vector "artistas"
-        artistas.push_back(artists);
-        artistas_para_ordenar.push_back(artists);
-        album.push_back(album_name);
-        album_para_ordenar.push_back(album_name);
-        canciones.push_back(track_name);
-        canciones_para_ordenar.push_back(track_name);
+        //matriz
+        matriz_musica.push_back({artists, album_name, track_name});
+        //Listas doblemente ligadas
+        double_list_music.add(artists, album_name, track_name);
     }
     cout << "-----Bienvenido al sistema de musica-----" << endl;
     while(consultante == true){
@@ -58,38 +63,59 @@ int main(){
         cout << "Selecciona la opcion que deseas usar: "<< endl;
         cin >> usuario;
         if(usuario == 1){
-            cout << "------Ordenar artistas por orden alfabetico-----" << endl;
-            for(int i = 0; i < artistas.size(); i++){
-                artistas_para_ordenar[i] = artistas[i] + "\ncancion: " + canciones[i] + "\nalbum: " + album[i];
-            }
-            ordered_music.quickSort(artistas_para_ordenar, 0, artistas_para_ordenar.size() - 1);
-            for (int i = 0; i < artistas_para_ordenar.size(); i++){
-                cout << "Artista: " << artistas_para_ordenar[i] <<endl;
-                cout << "----------------------------------" << endl;}
-            }
+            cout << "------ Agregar nuevos elementos ------" << endl;
+            cout << "Escribir el nombre del albumm, artista y canncion la primer letra en mayuscula" << endl;
+            cout << "Nombre de artista nuevo: " << endl;
+            cin >> artistas;
+            cout << "Nombre de album de " << artistas << endl;
+            cin >> album;
+            cout << "Nombre de cancion en album " << album << " Con artista " << artistas << endl;
+            cin >> cancion;
+            double_list_music.add(artistas, album, cancion);
+            matriz_musica = double_list_music.to_vector();
+
+        }
         if(usuario == 2){
-            cout << "------Ordenar canciones por orden alfabetico-----" << endl;
-            for(int i = 0; i < canciones.size(); i++){
-                canciones_para_ordenar[i] = canciones[i] + "\nartista: " + artistas[i] + "\nalbum: " + album[i];
-            }
-            ordered_music.quickSort(canciones_para_ordenar, 0, canciones_para_ordenar.size() - 1);
-            for (int i = 0; i < canciones_para_ordenar.size(); i++){
-                cout << "Cancion: " << canciones_para_ordenar[i] <<endl;
-                cout << "----------------------------------" << endl;}
-            }
+            cout << "------Funcion de busqueda------" << endl;
+            cout << "Nombre de artista a buscar: " << endl;
+            cin.ignore();
+            getline(cin,artistas);
+            cout << double_list_music.search(artistas) << endl;
+            cout << "------------------------------" << endl;
+
+        }
         if(usuario == 3){
-            cout << "------Ordenar album por orden alfabetico-----" << endl;
-            for(int i = 0; i < artistas.size(); i++){
-                album_para_ordenar[i] = album[i] + "\ncancion: " + canciones[i] + "\nartista: " + artistas[i];
-            }
-            ordered_music.quickSort(album_para_ordenar, 0, album_para_ordenar.size() - 1);
-            for (int i = 0; i < album_para_ordenar.size(); i++){
-                cout << "Album: " << album_para_ordenar[i] <<endl;
-                cout << "----------------------------------" << endl;
+            cout << "------Ordenar artistas por orden alfabetico-----" << endl;
+            ordered_music.quickSort(matriz_musica, 0, matriz_musica.size() - 1, 0);
+            for (int i = 0; i < matriz_musica.size(); i++){
+                cout << "Artista: " << matriz_musica[i][0] << endl;
+                cout << "Cancion: " << matriz_musica[i][1] << endl;
+                cout << "Album: " << matriz_musica[i][2] << endl;
+                cout << "---------------------------------------------" << endl;
             }
         }
         if(usuario == 4){
-            cout << "Saliendo del programa" << endl;
+            cout << "------Ordenar por orden alfabetico las canciones------"<< endl;
+            ordered_music.quickSort(matriz_musica, 0, matriz_musica.size() - 1, 2);
+            for (int i = 0; i < matriz_musica.size(); i++){
+                cout << "Cancion: " << matriz_musica[i][2] << endl;
+                cout << "Artista: " << matriz_musica[i][0] << endl;
+                cout << "Album: " << matriz_musica[i][1] << endl;
+                cout << "---------------------------------------------" << endl;
+            }
+        }
+        if (usuario == 5){
+            cout << "------Ordenar por orden alfabetico los albumes------"<< endl;
+            ordered_music.quickSort(matriz_musica, 0, matriz_musica.size()-1, 1);
+            for (int i = 0; i < matriz_musica.size(); i++){
+                cout << "Album: " << matriz_musica[i][1] << endl;
+                cout << "Artista: " << matriz_musica[i][0] << endl;
+                cout << "Cancion: " << matriz_musica[i][2] << endl;
+                cout << "---------------------------------------------" << endl;
+            }
+        }
+        if(usuario == 6){
+            cout << "Saliendo del programa..." << endl;
             consultante = false;
         }
     }
