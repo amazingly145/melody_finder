@@ -16,7 +16,8 @@ void menu(){
     cout << "3. Ordenar alafabeticamente los artistas" << endl;
     cout << "4. Ordenar alfabeticamente las canciones" << endl;
     cout << "5. Ordenar alfabeticamente los albumes" << endl;
-    cout << "6. Salida" << endl;
+    cout << "6. Visualizar base de datos" << endl;
+    cout << "7. Salida" << endl;
 }
 
 int main(){   
@@ -82,7 +83,6 @@ int main(){
             getline(cin,artistas);
             cout << double_list_music.search(artistas) << endl;
             cout << "------------------------------" << endl;
-
         }
         if(usuario == 3){
             cout << "------Ordenar artistas por orden alfabetico-----" << endl;
@@ -115,6 +115,15 @@ int main(){
             }
         }
         if(usuario == 6){
+            cout << "-----Visualizar la base de datos desordenada-----" << endl;
+            for(int i = 0; i < matriz_musica.size(); i++){
+                cout << "Album: " << matriz_musica[i][1] << endl;
+                cout << "Artista: " << matriz_musica[i][0] << endl;
+                cout << "Cancion: " << matriz_musica[i][2] << endl;
+                cout << "---------------------------------------------" << endl;
+            }
+        }
+        if(usuario == 7){
             cout << "Saliendo del programa..." << endl;
             consultante = false;
         }
