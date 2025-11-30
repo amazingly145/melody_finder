@@ -1,5 +1,6 @@
 # Melody_Finder
-Una aplicación para poder ordenar, administrar los componentes musicales que se encuentran en una plataforma de streaming de música, las variables que se pueden ordenar son las siguientes, como: nombre de artista, reproducciones, album, canciones, entre otros. El usuario podrá agregar nuevos artistas, ordenarlos en base a diferentes filtros, entre otras funccionalidades. 
+## Resumen
+Melody Finder es una aplicacio para poder administrar la base de datos en base a los artistas, albumes y canciones que la discográfica tiene. La discográfica contiene nombre de los artistas sus canciones y albumes, se podran ordenar alfabeticamente 
 ## SICT0302B: Toma decisiones 
 ### Selecciona y usa una estructura lineal adecuada al problema.
 Para poder separar nuestras columnas del data set en formato .csv, se utilizan vectores separados. También se implementa el uso de una matriz para poder hacer el ordenamiento que se pide. Se usa una lista doblemente ligada para poder hacer el añadido de artistas y la busqueda de los mismos.
