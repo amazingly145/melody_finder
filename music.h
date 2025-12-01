@@ -4,46 +4,66 @@ using namespace std;
 #include <vector>
 #include <sstream>
 #include <list>
-#include <stdexcept>
-#include <algorithm>
 #include <cctype>
-#include <locale>
 
-//QUICK SORT
 
+/*Clase Sort
+ * Como base principal tenemos el quick sort
+ * Tenemos los metodos para aplicar el metodo
+ * Y la base se pueda ordenar de manera alfabetica*/
 template <class T>
 class Sort{
     private:
+        //Metodo de division del vector
         int division(std::vector<vector<T>>&, int, int, int);
+        //Metodo para hacer el cambio
         void swap(std::vector<vector<T>>&, int, int, int);
     public:
+        //Metodo para hacer el sort
         std::vector<vector<T>> quickSort(std::vector<vector<T>>&, int, int, int);
 };
 
+/*Funcion para hacer el swap
+ * Cambiamos de lugar los valores
+ * En base a los indices*/
 template <class T>
 void Sort<T>::swap(std::vector<vector<T>> &source, int i, int j, int indice_a_sortear){
+    //Creamos la variable auxiliar para hacer el cambio de variables
     auto aux = source[i];
     source[i] = source[j];
     source[j] = aux;
 }
 
+/*Funcion division
+Divide la lista en dos; en los de menor valor
+y lo de mayor valor*/
 template <class T>
 int Sort<T>::division(std::vector<vector<T>> &source, int low, int high, int indice_a_sortear){
+    //Creamos un pivote, en base al valor que esta en medio
+    //para poder dividir la lista en dos
     T pivot = source[high][indice_a_sortear];
+    //i es el valor mas bajo - 1
     int i = low - 1;
+    //Creamos un ciclo for para recorrer
     for (int j = low; j <= high - 1; j++) {
+        //Si es menor que el pivote
         if (source[j][indice_a_sortear] < pivot) {
+            //aumentamos la i
             i++;
+            //hacemos el swap
             swap(source, i, j, indice_a_sortear);
         }
     }
+    //Si es mayor hacemos un swap
     swap(source, i+1, high, indice_a_sortear);
+    //Regresa el valor que sigue de la i
     return i + 1;
 }
 
 template <class T>
 vector<vector<T>> Sort<T>::quickSort(std::vector<std::vector<T>> &source, int low, int high, int indice_a_sortear){
     if(low < high){
+        //dividimos los vectores, en base al mas pequeño y el mas grande
         int div = division(source, low, high, indice_a_sortear);
         //empezar desde el mas pequeño
         quickSort(source, low, div - 1, indice_a_sortear);
@@ -53,11 +73,11 @@ vector<vector<T>> Sort<T>::quickSort(std::vector<std::vector<T>> &source, int lo
     return source;
 }
 
-//DOUBLE LINKED LIST
-
+//Listas doblemente ligadas
 template <class T> class DList;
 template <class T> class DListIterator;
 
+//Clase con los links
 template <class T>
 class DLink{
     private:
@@ -65,16 +85,19 @@ class DLink{
         DLink(T, T, T, DLink<T>*, DLink<T>*);
         DLink(const DLink<T>&);
 
+        //Variables de los artistas
         T artistas;
         T albumes;
         T canciones;
-        DLink<T> *previous; //previous value on the list
-        DLink<T> *next; //next pointer value in the list
+        //Apuntadores del valor anterior y el que sigue
+        DLink<T> *previous;
+        DLink<T> *next;
 
         friend class DList<T>;
 };
 
-//constructor
+//constructor base
+//igualamos las variables
 template <class T>
 DLink<T> :: DLink(T artist, T album, T song){
     artistas = artist;
@@ -108,9 +131,11 @@ DLink <T> :: DLink (const DLink<T> &source){
 template <class T>
 class DList{
     public:
+        //Constructores
         DList();
         DList(const DList<T>&);
         
+        //metodos
         bool empty() const;
         void add(T, T, T);
         std::string search(const std::string &artist);
@@ -206,14 +231,15 @@ std::string DList<T>::search(const std::string &artista) {
         }
         ptr = ptr->next;
     }
-
-    if (!encontrado)
+    if (!encontrado){
         return "Artista no encontrado.";
-    else
+    }else{
         return resultado;
+    }
 }
 
-
+//clase para convertir a vector nuestra lista doblemente ligada
+//despues la igualamos a una matriz en el main
 template <class T>
 std::vector<std::vector<T>> DList<T> :: to_vector() const{
     std::vector<std::vector<T>> result;
