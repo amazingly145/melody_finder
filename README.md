@@ -12,6 +12,9 @@ La listas doblemente ligada tienen una complejidad lineal baja O(n), el cual es 
 Se deben de descargar todos los archivos para su funcionamiento correcto, de la misma manera es necesario tener el data set empleado en la misma carpeta donde se encuentra el archivo main y header. Se debe de desargar el archivo .csv para que se puedan agregar los datos al programa, de la misma manera es necesario seguir todas las especificaciones e intrucciones que se pide a la hora de usar las funciones.
 
 ## Algoritmos usados
+Algoritmo de ordenamiento: se utilizo un Quick Sort, el cual tiene complejidad de O(nlog(n)). Para hacer el ordenamento se usa una matriz de vectores, en base a su indice principal que va cambiando dependiendo del tipo de ordenamiento que se quiere hacer.
+Algoritmo de busqueda: se usa una lista doblemente ligada, la cual tiene una complejidad lineal de O(n). 
+Algoritmo de inserción: lista doblemente ligada.
 
 ## Complejidad
 Para el uso de la matriz tiene una complejidad lineal O(N), siendo una complejidad lineal y esta se implementa en el Quick Sort, el cual tiene una complejidad de O(nlogn). Para que se pueda hacer la busqueda de manera mas eficiente y se pueda tener un resultado mas rapido. 
