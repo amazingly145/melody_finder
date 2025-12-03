@@ -15,19 +15,17 @@ using namespace std;
 /*guardar CSV
 Funcion para que despues de agregar nuevos artistas
 se puedan guardar en el CSV*/
-void guardarCSV(vector<vector<string>> &matriz) {
+void guardarCSV(vector<vector<string>> matriz) {
     //Abrimos el archivo .csv
     ofstream archivo(DATA_SET);
     //Nombres de los encabezados que vamos a guardar los artistas
-    archivo << "artists,album,track\n";
+    archivo << "artists,album_name,track_name\n";
     //Obtenemos las filas de la matriz
     for (int i = 0; i < matriz.size(); i++) {
         archivo << matriz[i][0] << "," 
         << matriz[i][1] << "," 
         << matriz[i][2] << "\n";
-}
-    //Cerramos el archivo
-    archivo.close();
+    }
 }
 
 /*Funcion de menu
@@ -70,12 +68,7 @@ int main(){
     //leemos todas las columnas de nuestro archivo
     while (getline(music_dataset, linea)){
         stringstream stream(linea);
-        string id, track_id, artists, album_name, track_name, popularity, duration_ms,
-            explicit_1, danceability, energy, key, loudness, mode, speechiness,
-            acousticness, instrumentalness, liveness, valence, tempo,
-            time_signature, track_genre;
-        getline(stream, id, delimitador);
-        getline(stream, track_id, delimitador);
+        string artists, album_name, track_name;
         getline(stream, artists, delimitador);
         getline(stream, album_name, delimitador);
         getline(stream, track_name, delimitador);
@@ -94,17 +87,20 @@ int main(){
             cout << "Numero de artistas a agregar: " << endl;
             cin >> agregar;
             while (agregar > 0){
+                cin.ignore();
                 cout << "Escribir el nombre del albumm, artista y cancion la primer letra en mayuscula" << endl;
+                cout << "Si tiene dos nombres escribir sin espacios" << endl;
                 cout << "Nombre de artista nuevo: " << endl;
-                cin >> artistas;
+                getline(cin, artistas);
                 cout << "Nombre de album de " << artistas << endl;
-                cin >> album;
+                getline(cin, album);
                 cout << "Nombre de cancion en album " << album << " Con artista " << artistas << endl;
-                cin >> cancion;
+                getline(cin, cancion);
                 double_list_music.add(artistas, album, cancion);
                 matriz_musica = double_list_music.to_vector();
                 guardarCSV(matriz_musica);
                 agregar--;
+                cout << "Artista agregado correctamente..." << endl;
             }
         }
         if(usuario == 2){
