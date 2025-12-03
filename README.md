@@ -13,7 +13,7 @@ Se deben de descargar todos los archivos para su funcionamiento correcto, de la 
 
 ## Algoritmos usados
 Algoritmo de ordenamiento: se utilizo un Quick Sort, el cual tiene complejidad de O(nlog(n)). Para hacer el ordenamento se usa una matriz de vectores, en base a su indice principal que va cambiando dependiendo del tipo de ordenamiento que se quiere hacer.
-Algoritmo de busqueda: se usa una lista doblemente ligada, la cual tiene una complejidad lineal de O(n). 
+estructura de busqueda: se usa una lista doblemente ligada, la cual tiene una complejidad lineal de O(n). 
 Algoritmo de inserción: lista doblemente ligada.
 
 ## Complejidad
