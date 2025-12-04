@@ -3,15 +3,25 @@
 Melody Finder es una aplicacio para poder administrar la base de datos en base a los artistas, albumes y canciones que la discográfica tiene. La discográfica contiene nombre de los artistas sus canciones y albumes. Se podran ordenar alfabeticamente en base a lo que el usuario escoga, es decir, si escoge la funcionalidad de orden por artista. Esto es lo que el programa implementara.
 
 ### Estructura lineal
-Para poder separar nuestras columnas del data set en formato .csv, se utilizan vectores separados. También se implementa el uso de una matriz para poder hacer el ordenamiento que se pide. Se usa una lista doblemente ligada para poder hacer el añadido de artistas y la busqueda de los mismos, debido a que su complejidad es de O(n), es decir tambien se mantiene linel, pero debido a que son pocas las columnas que se implementaron funciona de una manera rápida y eficiente.
+Para poder separar nuestras columnas del data set en formato .csv, se utilizan vectores separados. También se implementa el uso de una matriz para poder hacer el ordenamiento que se pide. Se usa una lista doblemente ligada para poder hacer el añadido de artistas y la busqueda de los mismos, debido a que su complejidad es de O(n), es decir tambien se mantiene linel, pero debido a que son pocas las columnas que se implementaron funciona de una manera rapida y eficiente. 
 
 ### Algoritmo de ordenamiento
 Se utiliza como algoritmo de ordenamiento, el quick sort. El cual tiene complejida Onlog(n), en la tabla de algoritmos de complejidad. Se describe como muy bueno incluso se utilizan menos recuros para su implementación. De esta manera, se procesa más rápido el código y obtenemos una respuesta más rápida del sistema. Se usa el quick sort para ordenar los artistas, canciones y albumes de manera alfabetica.
+Complejidad del tiempo: En su peor esta en O(n^2), mientras que en promedio y mejor esta en O(nlogn).
+Complejidad de espacio utilizado: En su peor esta en Olog(n).
 
-### Estructura de busqueda
+Debido a las razones anteriormente mencionadas se escogió ese algoritmo, debido a que es rapido y no toma mucho espacio, hacer las funciones de ordenamiento.
+
+### Estructura de busqueda y añadido
 La listas doblemente ligada tienen una complejidad lineal baja O(n), el cual es una estructura lineal. Debido a que la base de datos es pequeña y con pocas columnas o rubros no es necesario utilizar un algoritmo de complejidad alta, esto hace que el funcionamiento del mismo se eficiente y las busquedas puedan ser rapidas. Aunque si se desea amplear la base de datos pudiera causar un problema en la area de la velocidad de recopilacion de datos.
+
+Complejidad del tiempo: para la busqueda y añadido de datsos, tiene una complejidad de O(n) y en el peor de los casos se encuentra definido de la misma manera.
+Complejidad del espacio: pra la busqueda y añadido, en el peor de los casos se encuentra en O(n).
+
+Debido a que la base de datos que estamos usando no es muy grande podemos utilizar una estructura lineal, pero si se quisera tener una bse de datos con mas datos se reccomienda utilizar una estructura mas compleja como un arbol o hash.
+
 ## Forma de utilizarlo
-Se deben de descargar todos los archivos para su funcionamiento correcto, de la misma manera es necesario tener el data set empleado en la misma carpeta donde se encuentra el archivo main y header. Se debe de desargar el archivo .csv para que se puedan agregar los datos al programa, de la misma manera es necesario seguir todas las especificaciones e intrucciones que se pide a la hora de usar las funciones.
+Se deben de descargar todos los archivos para su funcionamiento correcto, de la misma manera es necesario tener el data set empleado en la misma carpeta donde se encuentra el archivo main y header. Se debe de desargar el archivo .csv para que se puedan agregar los datos al programa, de la misma manera es necesario seguir todas las especificaciones e intrucciones que se pide a la hora de usar las funciones. En la terminal solo se debe de colocar g++ main.cpp -o main.
 
 ## Algoritmos usados
 Algoritmo de ordenamiento: se utilizo un Quick Sort, el cual tiene complejidad de O(nlog(n)). Para hacer el ordenamento se usa una matriz de vectores, en base a su indice principal que va cambiando dependiendo del tipo de ordenamiento que se quiere hacer.
@@ -20,10 +30,6 @@ Algoritmo de inserción: lista doblemente ligada.
 
 ## Complejidad
 Para el uso de la matriz tiene una complejidad lineal O(N), siendo una complejidad lineal y esta se implementa en el Quick Sort, el cual tiene una complejidad de O(nlogn). Para que se pueda hacer la busqueda de manera mas eficiente y se pueda tener un resultado mas rapido. 
-
-## Quick Sort
-Se decidio utilizar el quik sort, ya que en terminos de complejidad o en base a nuestra base de complejidad tenemos los siguientes valores:
-
 
 ## Controles de uso
 Primera entrega 22 de septiembre del 2025: se entrego, el avance utilizando el metodo de quick sort, tambien se incluyo el main y el header del mismo.
